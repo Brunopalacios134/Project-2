@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include <string>
 #include <cctype>
+#include <vector>
 using namespace std;
 string trim(const string& str){
     string whitespace = " \t\r";
@@ -22,5 +23,21 @@ string toUpper(const string& str){
         result[i] = toupper(result[i]);
     }
     return result;
+}
+vector<string> split(const string& line, char delimiter) {
+    vector<string> pieces;
+    size_t start = 0;
+
+    size_t pos = line.find(delimiter, start);
+    while (pos != string::npos) {
+        pieces.push_back(line.substr(start, pos - start));
+
+        start = pos + 1;
+        pos = line.find(delimiter, start);
+    }
+
+    pieces.push_back(line.substr(start));
+
+    return pieces;
 }
 
