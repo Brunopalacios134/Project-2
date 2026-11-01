@@ -2,7 +2,7 @@
 // Author: Bruno Palacios Busnelli
 #include "Utils.h"
 #include <string>
-#include <iostream>
+#include <cctype>
 using namespace std;
 string trim(const string& str){
     string whitespace = " \t\r";
@@ -15,5 +15,12 @@ string trim(const string& str){
     size_t length = end - start + 1;
 
     return str.substr(start, length);
+}
+string toUpper(const string& str){
+    string result = str;
+    for (size_t i = 0; i < result.length(); i++){
+        result[i] = toupper(result[i]);
+    }
+    return result;
 }
 
