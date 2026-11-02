@@ -36,6 +36,5 @@ string Facility::getCategory() const {
 
 // Display
 void Facility::display() const {
-    cout << id << " | " << name << " | "
-         << building << " | " << category << endl;
+    cout << id << " | " << name << " | " << building << " | " << category << endl;
 }
