@@ -1,0 +1,29 @@
+
+Member: Donovan Ellis
+Part B - Campus Graph and BFS
+
+Modules:
+- include/CampusGraph.h
+- src/CampusGraph.cpp
+
+Responsibilities:
+- Implemented undirected graph using adjacency lists.
+- Added building and connection file loading.
+- Added graph display, building counts, and degrees.
+- Implemented BFS reachability and distances.
+- Implemented BFS shortest path.
+- Implemented graph connectivity report.
+- Handled duplicate buildings, invalid connections,
+  unknown buildings, and missing files.
+
+Testing:
+- tests/test_graph.cpp
+- tests/test_graph_edges.cpp
+- tests/test_graph_files.cpp
+- Passed 41/41 local test checks.
+- Recorded results in test_results.txt.
+
+Shared Work:
+- Graph testing and validation.
+- Project documentation.
+- Integration support for the main menu.
