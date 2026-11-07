@@ -1,2 +1,4 @@
-# DepartmentName|ParentName
-University|NONE
+# FacilityID|FacilityName|BuildingName|Category
+F009|Room A|Library|Classroom
+F010|Room B|Library|Classroom
+f009|Duplicate Room|Library|Classroom

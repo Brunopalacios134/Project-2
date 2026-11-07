@@ -488,3 +488,10 @@ size_t CampusGraph::getBuildingCount() const {
 size_t CampusGraph::getConnectionCount() const {
     return connectionCount;
 }
+vector<string> CampusGraph::getBuildingNames() const {
+    vector<string> names;
+    for (const Building& b : buildings) {
+        names.push_back(b.name);
+    }
+    return names;
+}

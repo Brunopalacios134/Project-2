@@ -20,6 +20,9 @@ public:
     };
 
     CampusGraph();
+    // Returns the names of all buildings in insertion order
+
+    std::vector<std::string> getBuildingNames() const;
 
     // Adds a building
     bool addBuilding(const std::string& name,

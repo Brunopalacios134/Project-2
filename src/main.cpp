@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "Utils.h"
 #include "FacilityDatabase.h"
+#include "CampusGraph.h"
 using namespace std;
 int readMenuChoice() {
     cout << "Enter choice: ";
@@ -45,7 +46,10 @@ int main(int argc, char* argv[]) {
     if (argc > 1) {
         dataDir = argv[1];
     }
-    vector<string> buildings;
+    CampusGraph graph;
+    graph.loadBuildings(dataDir + "/buildings.txt");
+    graph.loadConnections(dataDir + "/connections.txt");
+    vector<string> buildings = graph.getBuildingNames();
     FacilityDatabase db;
     db.loadFromFile(dataDir + "/facilities.txt", buildings);
     while (true) {
@@ -64,7 +68,19 @@ int main(int argc, char* argv[]) {
             getline(cin, input);
             db.searchById(input);
         }
-        else if (choice >= 3 && choice <= 9) {
+        else if (choice == 3) {
+            graph.displayGraph();
+        }
+        else if (choice == 4) {
+            graph.displayCountsAndDegrees();
+        }
+        else if (choice == 5) {
+            cout << "Enter starting building: ";
+            string name;
+            getline(cin, name);
+            graph.displayReachable(name);
+        }
+        else if (choice >= 6 && choice <= 9) {
             cout << "Not implemented yet." << endl;
         }
         else {
