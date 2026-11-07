@@ -13,8 +13,7 @@ private:
 public:
     // Constructors
     Facility();
-    Facility(const std::string& id, const std::string& name,
-             const std::string& building, const std::string& category);
+    Facility(const std::string& id, const std::string& name, const std::string& building, const std::string& category);
 
     // Getters
     std::string getId() const;
