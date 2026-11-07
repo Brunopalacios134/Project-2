@@ -1,0 +1,30 @@
+
+CAMPUS GRAPH AND BFS TEST RESULTS
+Author: Donovan Ellis
+
+Test 1: Sample Campus Graph
+Input: Instructor buildings.txt and connections.txt
+Expected: 7 buildings, 6 connections, correct BFS order,
+degrees, shortest path, and connectivity.
+Actual: All 8 sample checks passed.
+Result: PASS (8/8)
+
+Test 2: Graph Edge Cases
+Input: Duplicate buildings, unknown buildings,
+self-connections, reversed connections, missing files,
+invalid BFS starts, and disconnected buildings.
+Expected: Invalid operations rejected without crashing.
+Actual: All 14 checks passed.
+Result: PASS (14/14)
+
+Test 3: File Validation
+Input: Malformed records, duplicate names, Windows line
+endings, whitespace, comments, and unknown references.
+Expected: 4 buildings accepted, 3 rejected;
+3 connections accepted, 6 rejected.
+Actual: 4 buildings accepted, 3 rejected;
+3 connections accepted, 6 rejected.
+Result: PASS (19/19)
+
+TOTAL: 41/41 CHECKS PASSED
+Testing Environment: Windows, MSYS2 g++ 15.2.0
