@@ -47,6 +47,8 @@ public:
     void displayHierarchy();
 
     void preorderTraversal();
+    
+    void loadFromFile(const string& filename);
 
     DepartmentNode* getRoot() const;
 };

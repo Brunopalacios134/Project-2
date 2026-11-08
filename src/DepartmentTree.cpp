@@ -1,6 +1,8 @@
 #include "DepartmentTree.h"
 #include <iostream>
 #include <algorithm>
+#include "Utils.h"
+#include <fstream>
 
 using namespace std;
 
@@ -256,4 +258,63 @@ void DepartmentTree::destroyTree(
     }
 
     delete node;
+}
+void DepartmentTree::loadFromFile(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) {
+        cout << "Error: cannot open file " << filename << endl;
+        cout << filename << ": 0 accepted, 0 rejected" << endl;
+        return;
+    }
+    string line;
+    int lineNumber = 0;
+    int accepted = 0;
+    int rejected = 0;
+    while (getline(file, line)) {
+        lineNumber++;
+        string clean = trim(line);
+        if (clean.empty() || clean[0] == '#') {
+            continue;
+        }
+        vector<string> parts = split(clean, '|');
+        if (parts.size() != 2) {
+            cout << "Warning: " << filename << ", line " << lineNumber << ": expected 2 fields, found " << parts.size() << endl;
+            rejected++;
+            continue;
+        }
+        string name = trim(parts[0]);
+        string parentName = trim(parts[1]);
+
+        if (name.empty() || parentName.empty()) {
+            cout << "Warning: " << filename << ", line " << lineNumber << ": empty required field" << endl;
+            rejected++;
+            continue;
+        }
+
+        if (isEmpty()) {
+            if (toUpper(parentName) != "NONE") {
+                cout << "Warning: " << filename << ", line " << lineNumber << ": first department must have parent NONE" << endl;
+                rejected++;
+                continue;
+            }
+        } else {
+            if (search(name) != nullptr) {
+                cout << "Warning: " << filename << ", line " << lineNumber << ": duplicate department " << name << endl;
+                rejected++;
+                continue;
+            }
+
+            if (search(parentName) == nullptr) {
+                cout << "Warning: " << filename << ", line " << lineNumber << ": unknown parent " << parentName << endl;
+                rejected++;
+                continue;
+            }
+        }
+
+        addDepartment(name, parentName);
+        accepted++;
+    }
+
+    cout << filename << ": " << accepted << " accepted, "
+         << rejected << " rejected" << endl;
 }

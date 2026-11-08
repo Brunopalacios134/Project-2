@@ -25,6 +25,5 @@ class HashTable{
     size_t getCount() const;
     // Returns the number of collisions.
     size_t getCollisions() const;
-
 };
 #endif

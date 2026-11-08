@@ -6,6 +6,7 @@
 #include "Utils.h"
 #include "FacilityDatabase.h"
 #include "CampusGraph.h"
+#include "DepartmentTree.h"
 using namespace std;
 int readMenuChoice() {
     cout << "Enter choice: ";
@@ -29,6 +30,7 @@ int readMenuChoice() {
     }
 }
 void printMenu() {
+    cout << endl;
     cout << "====== Smart Campus Menu ======" << endl;
     cout << "1. View all facilities" << endl;
     cout << "2. Search facility by ID" << endl;
@@ -52,6 +54,8 @@ int main(int argc, char* argv[]) {
     vector<string> buildings = graph.getBuildingNames();
     FacilityDatabase db;
     db.loadFromFile(dataDir + "/facilities.txt", buildings);
+    DepartmentTree tree;
+    tree.loadFromFile(dataDir + "/departments.txt");
     while (true) {
         printMenu();
         int choice = readMenuChoice();
@@ -80,9 +84,55 @@ int main(int argc, char* argv[]) {
             getline(cin, name);
             graph.displayReachable(name);
         }
-        else if (choice >= 6 && choice <= 9) {
-            cout << "Not implemented yet." << endl;
+        else if (choice == 6) {
+            cout << "Enter department name: ";
+
+            string name;
+            getline(cin, name);
+            name = trim(name);
+
+            if (name.empty()) {
+                cout << "Error: department name cannot be blank." << endl;
+            }
+            else if (tree.isEmpty()) {
+                tree.addDepartment(name);
+            }
+            else {
+                cout << "Enter parent department: ";
+
+                string parent;
+                getline(cin, parent);
+                parent = trim(parent);
+
+                if (parent.empty()) {
+                    cout << "Error: parent name cannot be blank." << endl;
+                }
+                else {
+                    tree.addDepartment(name, parent);
+                }
+            }
         }
+        else if (choice == 7) {
+            cout << "Enter department name: ";
+
+            string name;
+            getline(cin, name);
+            name = trim(name);
+
+            if (name.empty()) {
+                cout << "Error: department name cannot be blank." << endl;
+            }
+            else {
+                tree.displayDepartmentInfo(name);
+            }
+        }
+        else if (choice == 8) {
+            tree.displayHierarchy();
+        }
+        else if (choice == 9) {
+            tree.preorderTraversal();
+        }
+
         else {
             cout << "Invalid choice. Please enter a number from 0 to 9." << endl;
         }
