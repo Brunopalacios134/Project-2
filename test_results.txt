@@ -28,3 +28,45 @@ Result: PASS (19/19)
 
 TOTAL: 41/41 CHECKS PASSED
 Testing Environment: Windows, MSYS2 g++ 15.2.0
+
+Test 4: Facility ID Search
+Input: Menu option 2 with five facility IDs
+Expected:
+F004 and f004 should return the same facility.
+004 should display an invalid format message.
+F999 should display a not found message including the ID.
+A blank ID should display an error message.
+Actual:
+Found: F004 | Computer Lab A | Science Building | Computer Lab
+Found: F004 | Computer Lab A | Science Building | Computer Lab
+Invalid format: an ID is F followed by exactly three digits.
+Not found: no facility with ID F999
+Error: ID cannot be blank.
+Result: PASS
+
+Test 5:Hash Collision and Duplicate ID
+Input:Run ./campus testdata/collision.
+Expected:
+F009 and F010 should hash to the same bucket (0) with capacity 11, producing 1 collision.
+f009 should be converted to F009 and rejected as a duplicate ID.
+The duplicate ID should not increase the collision counter.
+The summary should show 2 accepted, 1 rejected, and 1 collision.
+Actual:Warning: testdata/collision/facilities.txt, line 4: duplicate facility ID F009
+testdata/collision/facilities.txt: 2 accepted, 1 rejected (hash capacity 11, entries 2, collisions 1)
+Result: PASS
+
+Test 6:
+Input: ./campus testdata/missing_files
+Expected: The program should display an error for each of the four missing files, including the filename.
+Actual: Error: cannot open testdata/missing_files/buildings.txt
+testdata/missing_files/buildings.txt: 0 accepted, 0 rejected
+Error: cannot open testdata/missing_files/connections.txt
+testdata/missing_files/connections.txt: 0 accepted, 0 rejected
+Error: cannot open file testdata/missing_files/facilities.txt
+testdata/missing_files/facilities.txt: 0 accepted, 0 rejected (hash capacity 11, entries 0, collisions 0)
+Error: cannot open file testdata/missing_files/departments.txt
+testdata/missing_files/departments.txt: 0 accepted, 0 rejected
+Result: PASS
+
+
+Testing Environment: Windows (MSYS2 g++) and UNT CSE CELL (cell16-cse, Ubuntu 22.04, g++)
