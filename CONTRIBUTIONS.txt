@@ -1,3 +1,31 @@
+Member: Bruno Palacios Busnelli
+Part A - Facilities and Custom Hash Table
+
+Modules:
+- Facility.h / Facility.cpp
+- HashTable.h / HashTable.cpp
+- FacilityDatabase.h / FacilityDatabase.cpp
+- Utils.h / Utils.cpp
+- main.cpp
+
+Responsabilities:
+- Created the Facility class.
+- Implemented a custom polynomial hash function.
+- Used separate chaining with vectors to handle hash collisions.
+- Implemented collision counting and hash table diagnostics.
+- Created the facility file loader with validation for IDs, buildings, and duplicate entries.
+- Implemented a function to display all loaded facilities.
+- Implemented facility ID searching.
+
+Testing:
+- Used testdata/collision to test hash collisions and duplicate IDs.
+- Ran integration tests on Windows and CELL (cell16-cse).
+- Documented Tests 4–6 and 9 in test_results.txt.
+
+Shared Work: 
+- Set up the repository structure and collaborators.
+- Developed the Utils module used by all three project parts.
+- Contributed to README.txt and design_document.txt.
 
 Member: Donovan Ellis
 Part B - Campus Graph and BFS
@@ -15,7 +43,6 @@ Responsibilities:
 - Implemented graph connectivity report.
 - Handled duplicate buildings, invalid connections,
   unknown buildings, and missing files.
-
 Testing:
 - tests/test_graph.cpp
 - tests/test_graph_edges.cpp
