@@ -1,0 +1,49 @@
+
+1. MAIN CLASSES AND MODULES
+
+main.cpp - Loads campus data, displays the interactive menu, and connects all system components.
+
+Facility - Stores facility information, including ID, name, building, and category.
+
+FacilityDatabase - Loads and validates facilities.txt, stores facilities in a vector to preserve file order and in a hash table for efficient ID searches.
+
+Utils - Provides helper functions for trimming whitespace, converting strings to uppercase, and splitting strings.
+
+HashTable - Stores facilities using separate chaining and allows fast searches by facility ID.
+
+CampusGraph - Loads buildings.txt and connections.txt, represents campus buildings and their connections using a graph, and supports BFS traversal.
+
+DepartmentNode - Represents a department in the hierarchy and stores its name and child departments.
+
+DepartmentTree - Loads departments.txt, manages the department hierarchy using a general tree and supports searching, insertion, and preorder traversal.
+_________________________________________________________________________________________________________________________________________________________
+2. HASH FUNCTION
+
+The hash table uses a function to calculate an index for each facility ID. It processes each character using the following formula
+hash = 0
+for each character c:
+    hash = (hash * 31 + c) % capacity
+I Use 31, as it is a prime number that helps distribute IDs across the positions in the hash table.
+_________________________________________________________________________________________________________________________________________________________
+3. COLLISION STRATEGY
+
+We use separate chaining. The table is a vector of buckets, and
+each bucket is a std::vector<Facility>. When two IDs hash to the
+same index, the new facility is added to the end of that bucket's
+vector with push_back.
+
+I chose this method because the buckets can grow as more facilities are added, and thanks to vectors they don't have a fixed limit on how many facilities each bucket can hold. 
+We also decided to use vectors instead of linked lists because they are easier to implement and manage.
+_________________________________________________________________________________________________________________________________________________________
+4. COLLISION COUNTING
+A collision occurs when a facility is inserted into a bucket that already contains another facility. Duplicate IDs are checked before insertion and rejected, 
+so they do not count as collisions.
+_________________________________________________________________________________________________________________________________________________________
+5.CAPACITY AND FULL-TABLE BEHAVIOR
+The hash table has a default capacity of 11, which is a prime number defined by the constant DEFAULT_CAPACITY. The table never becomes full because it uses separate chaining, 
+allowing multiple facilities to be stored in the same bucket. Therefore, no insertion is rejected due to lack of space. The table does not resize.
+_________________________________________________________________________________________________________________________________________________________
+6.GRAPH REPRESENTATION
+The campus graph uses an adjacency list, storing buildings in a vector, where each building has a vector of neighbor indexes. I chose this structure because it is simple,
+efficient, and allows us to easily find connected buildings. The graph is undirected, so each connection is stored at both endpoints. The neighbors are stored in the order they are added 
+and are not sorted.
