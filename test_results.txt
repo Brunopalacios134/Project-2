@@ -29,6 +29,9 @@ Result: PASS (19/19)
 TOTAL: 41/41 CHECKS PASSED
 Testing Environment: Windows, MSYS2 g++ 15.2.0
 
+FACILITY AND HASH TABLE TEST RESULTS
+Author: Bruno Palacios Busnelli
+
 Test 4: Facility ID Search
 Input: Menu option 2 with five facility IDs
 Expected:
@@ -55,7 +58,7 @@ Actual:Warning: testdata/collision/facilities.txt, line 4: duplicate facility ID
 testdata/collision/facilities.txt: 2 accepted, 1 rejected (hash capacity 11, entries 2, collisions 1)
 Result: PASS
 
-Test 6:
+Test 6:Missing Data Files
 Input: ./campus testdata/missing_files
 Expected: The program should display an error for each of the four missing files, including the filename.
 Actual: Error: cannot open testdata/missing_files/buildings.txt
@@ -68,5 +71,100 @@ Error: cannot open file testdata/missing_files/departments.txt
 testdata/missing_files/departments.txt: 0 accepted, 0 rejected
 Result: PASS
 
-
 Testing Environment: Windows (MSYS2 g++) and UNT CSE CELL (cell16-cse, Ubuntu 22.04, g++)
+
+DEPARTMENT TREE TEST RESULTS
+
+Tree implementation: Kristian Muteba
+File loading (loadFromFile) and tests run by: Bruno Palacios Busnelli
+
+Test 7: Sample Department Tree
+Input: Run ./campus with the sample data. Select menu option 8 (hierarchy), option 9 (preorder traversal), and option 7 with computer science, University, and biology.
+Expected: 
+Option 8 should display the department hierarchy with 4 spaces of indentation per level.
+Option 9 should display all 7 departments in preorder without indentation.
+computer science should be found regardless of capitalization, with parent College of Engineering, 0 direct children, and depth 2.
+University should have parent None, 2 direct children, and depth 0.
+biology should display a not found message.
+Actual:
+Option 8:
+University
+    College of Engineering
+        Computer Science
+        Electrical Engineering
+    College of Science
+        Mathematics
+        Physics
+Option 9:
+University
+College of Engineering
+Computer Science
+Electrical Engineering
+College of Science
+Mathematics
+Physics
+Option 7 "computer science":
+Name: Computer Science, Parent: College of Engineering, Direct Children: 0, Depth: 2
+Option 7 "University":
+Name: University, Parent: None, Direct Children: 2, Depth: 0
+Option 7 "biology":
+Department not found.
+Result: PASS
+
+Test 8: Adding Departments
+Input: Run ./campus testdata/missing_files with an empty department tree and add university.
+Run ./campus with the sample data and add Biology under college of science. Then select option 8 to display the hierarchy.
+Add physics under University (duplicate department).
+Add Chemistry under Pool (unknown parent).
+Expected: - The program should ask only for the department name and create it as the root.
+          - Biology should be added under College of Science as its last child.
+          - Physics should be rejected as a duplicate, and the tree should remain unchanged.
+         - Chemistry should be rejected because the parent does not exist, and the tree should remain unchanged.
+Actual:
+Enter department name: university
+Root department created: university
+Biology added under college of science
+Option 8 shows Biology as the last child of College of Science
+Duplicate department name.
+Parent department not found.
+Result: PASS.
+
+MENU AND INPUT HANDLING TEST RESULTS
+Author: Bruno Palacios Busnelli
+
+Test 9: Invalid Menu and Name input.
+Input: 
+1.Enter abc in the main menu.
+2.Press Enter without typing anything in the main menu.
+3.Enter 15 in the main menu.
+4.Select option 2 and press Enter without entering a facility ID.
+5.Select option 5 and press Enter without entering a building name.
+6.Select option 5 and enter Student Union.
+7.Select option 6 and press Enter without entering a department name.
+8.Select option 7 and press Enter without entering a department name.
+9.Select option 1 to verify that the program continues working.
+Expected: The program should handle invalid and blank inputs without crashing, display appropriate error messages, and continue running normally.
+Actual: Step 1 "abc":
+Invalid choice. Please enter a number from 0 to 9.
+Step 2 blank:
+Invalid choice. Please enter a number from 0 to 9.
+Step 3 "15":
+Invalid choice. Please enter a number from 0 to 9.
+Step 4 (option 2):
+Error: ID cannot be blank.
+Step 5 (option 5):
+Error: starting building cannot be blank.
+Step 6 (option 5) "Student Union":
+Reachable buildings from Student Union: ...
+Reachable: 6 of 7 buildings
+Step 7 (option 6):
+Error: department name cannot be blank.
+Step 8 (option 7):
+Error: department name cannot be blank.
+Step 9 (option 1):
+10 facilities listed
+Total facilities: 10
+Result: PASS
+
+
+
