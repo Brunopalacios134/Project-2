@@ -23,6 +23,7 @@ The hash table uses a function to calculate an index for each facility ID. It pr
 hash = 0
 for each character c:
     hash = (hash * 31 + c) % capacity
+Before hashing, the ID is converted to uppercase, so f004 and F004 are stored in the same bucket. The variable c represents the ASCII value of each character.
 I Use 31, as it is a prime number that helps distribute IDs across the positions in the hash table.
 _________________________________________________________________________________________________________________________________________________________
 3. COLLISION STRATEGY
