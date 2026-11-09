@@ -8,7 +8,7 @@ Modules:
 - Utils.h / Utils.cpp
 - main.cpp
 
-Responsabilities:
+Responsibilities:
 - Created the Facility class.
 - Implemented a custom polynomial hash function.
 - Used separate chaining with vectors to handle hash collisions.
@@ -16,6 +16,7 @@ Responsabilities:
 - Created the facility file loader with validation for IDs, buildings, and duplicate entries.
 - Implemented a function to display all loaded facilities.
 - Implemented facility ID searching.
+- Added loadFromFile() to DepartmentTree.
 
 Testing:
 - Used testdata/collision to test hash collisions and duplicate IDs.
@@ -26,6 +27,7 @@ Shared Work:
 - Set up the repository structure and collaborators.
 - Developed the Utils module used by all three project parts.
 - Contributed to README.txt and design_document.txt.
+- Added documentation for department tree Tests 7–8.
 
 Member: Donovan Ellis
 Part B - Campus Graph and BFS
@@ -43,6 +45,7 @@ Responsibilities:
 - Implemented graph connectivity report.
 - Handled duplicate buildings, invalid connections,
   unknown buildings, and missing files.
+
 Testing:
 - tests/test_graph.cpp
 - tests/test_graph_edges.cpp
@@ -54,3 +57,19 @@ Shared Work:
 - Graph testing and validation.
 - Project documentation.
 - Integration support for the main menu.
+
+
+Member: Kristian Muteba
+Part C - Department Tree
+
+Modules: 
+- include/DepartmentNode.h, src/DepartmentNode.cpp
+- include/DepartmentTree.h, src/DepartmentTree.cpp
+
+Responsibilities:
+- Built a general tree with child vectors and parent pointers.
+- Implemented department insertion with duplicate and parent validation
+- Added case-insensitive search with parent, child count, and depth.
+- Implemented hierarchy display with 4-space indentation.
+- Added preorder traversal and a destructor to free memory.
+
