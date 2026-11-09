@@ -1,3 +1,5 @@
+// Main program: loads the four data files in order.
+// Author: Bruno Palacios Busnelli
 #include <iostream> 
 #include <string>
 #include <cctype>
@@ -8,9 +10,11 @@
 #include "CampusGraph.h"
 #include "DepartmentTree.h"
 using namespace std;
+// Reads and validates the user's menu choice
 int readMenuChoice() {
     cout << "Enter choice: ";
     string line;
+    // Exit if the input stream is closed
     if (!getline(cin, line)) {
         return 0;
     }
@@ -29,6 +33,7 @@ int readMenuChoice() {
         return -1;
     }
 }
+// Displays menu
 void printMenu() {
     cout << endl;
     cout << "====== Smart Campus Menu ======" << endl;
@@ -59,31 +64,38 @@ int main(int argc, char* argv[]) {
     while (true) {
         printMenu();
         int choice = readMenuChoice();
+        //0: Exit the program
         if (choice == 0) {
             cout << "Goodbye." << endl;
             break;
         }
+        //1: Display all facilities
         else if (choice == 1) {
             db.displayAll();
         }
+        //2: Search for a facility by ID
         else if (choice == 2) {
             cout << "Enter facility ID: ";
             string input;
             getline(cin, input);
             db.searchById(input);
         }
+        //3: Display the campus graph
         else if (choice == 3) {
             graph.displayGraph();
         }
+        //4: Display graph statistics
         else if (choice == 4) {
             graph.displayCountsAndDegrees();
         }
+        //5: Find reachable buildings using BFS
         else if (choice == 5) {
             cout << "Enter starting building: ";
             string name;
             getline(cin, name);
             graph.displayReachable(name);
         }
+        //6: Add a new department
         else if (choice == 6) {
             cout << "Enter department name: ";
 
@@ -112,6 +124,7 @@ int main(int argc, char* argv[]) {
                 }
             }
         }
+        // 7: Search for a department
         else if (choice == 7) {
             cout << "Enter department name: ";
 
@@ -126,9 +139,11 @@ int main(int argc, char* argv[]) {
                 tree.displayDepartmentInfo(name);
             }
         }
+        //8: Display the department hierarchy
         else if (choice == 8) {
             tree.displayHierarchy();
         }
+        //9: Display departments in preorder
         else if (choice == 9) {
             tree.preorderTraversal();
         }

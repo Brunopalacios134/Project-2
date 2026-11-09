@@ -1,4 +1,4 @@
-// Utility functions shared by all modules
+// Utils: shared string helpers (trim, toUpper, split) used by all modules
 // Author: Bruno Palacios Busnelli
 #ifndef UTILS_H
 #define UTILS_H

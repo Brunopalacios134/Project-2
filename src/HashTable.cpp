@@ -1,3 +1,5 @@
+// HashTable: custom hash table keyed by facility ID
+// Author: Bruno Palacios Busnelli
 #include "HashTable.h"
 using namespace std;
 
@@ -18,6 +20,7 @@ size_t HashTable::hashFunction(const string& key) const {
     }
     return hash;
 }
+// Inserts a facility into the hash table
 bool HashTable::insert(const Facility& facility) {
     string id = facility.getId();
     size_t index = hashFunction(id);
@@ -33,6 +36,7 @@ bool HashTable::insert(const Facility& facility) {
     count++;
     return true;
 }
+// Returns true if the facility is found.
 bool HashTable::search(const string& id, Facility& result) const {
     size_t index = hashFunction(id);
     for (const Facility& f : buckets[index]) {
@@ -43,12 +47,15 @@ bool HashTable::search(const string& id, Facility& result) const {
     }
     return false;
 }
+// Returns the capacity of the hash table.
 size_t HashTable::getCapacity() const {
     return capacity;
 }
+// Returns the number of facilities stored.
 size_t HashTable::getCount() const {
     return count;
 }
+// Returns the number of collisions.
 size_t HashTable::getCollisions() const {
     return collisions;
 }

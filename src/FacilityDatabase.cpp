@@ -1,10 +1,13 @@
+// FacilityDatabase: loads and validates facilities.txt, keeps facilities in file
+// order, and searches by ID using the custom HashTable
+// Author: Bruno Palacios Busnelli
 #include "FacilityDatabase.h"
 #include "Utils.h"
 #include <iostream>
 #include <fstream>
 #include <cctype>
 using namespace std;
-
+// Checks if the facility ID has a valid format
 bool FacilityDatabase::isValidId(const string& id) const{
     if(id.length() != 4){
         return false;
@@ -19,6 +22,7 @@ bool FacilityDatabase::isValidId(const string& id) const{
     }
     return true;
 }
+// Finds a building from the building list
 string FacilityDatabase::findBuilding(const string& name, const vector<string>& buildings) const {
     for (const string& b : buildings) {
         if (toUpper(b) == toUpper(name)) {
@@ -104,6 +108,7 @@ void FacilityDatabase::loadFromFile(const string& filename, const vector<string>
          << table.getCount() << ", collisions "
          << table.getCollisions() << ")" << endl;
 }
+// Displays all facilities
 void FacilityDatabase::displayAll() const {
     if (facilities.empty()) {
         cout << "No facilities loaded." << endl;
@@ -114,6 +119,7 @@ void FacilityDatabase::displayAll() const {
     }
     cout << "Total facilities: " << facilities.size() << endl;
 }
+// Searches for a facility using its ID
 void FacilityDatabase::searchById(const string& input) const {
     string id = toUpper(trim(input));
     if (id.empty()) {

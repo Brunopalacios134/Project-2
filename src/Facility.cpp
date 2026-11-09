@@ -1,3 +1,5 @@
+// Facility: stores one campus facility record (ID, name, building, category)
+// Author: Bruno Palacios Busnelli
 #include "Facility.h"
 #include <iostream>
 using namespace std;
@@ -17,19 +19,19 @@ Facility::Facility(const string& id, const string& name, const string& building,
     this->building = building;
     this->category = category;
 }
-
+// return id
 string Facility::getId() const {
     return id;
 }
-
+// return name
 string Facility::getName() const {
     return name;
 }
-
+// return building
 string Facility::getBuilding() const {
     return building;
 }
-
+// return category
 string Facility::getCategory() const {
     return category;
 }

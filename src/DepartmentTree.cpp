@@ -15,7 +15,7 @@ DepartmentTree::~DepartmentTree()
 {
     destroyTree(root);
 }
-
+// Checks if the tree is empty
 bool DepartmentTree::isEmpty() const
 {
     return root == nullptr;
@@ -68,13 +68,13 @@ DepartmentNode* DepartmentTree::searchHelper(
 
     return nullptr;
 }
-
+// Searches for a department by name
 DepartmentNode* DepartmentTree::search(
     const string& departmentName)
 {
     return searchHelper(root, departmentName);
 }
-
+// Adds a department to the tree
 bool DepartmentTree::addDepartment(
     const string& departmentName,
     const string& parentName)
@@ -124,7 +124,7 @@ bool DepartmentTree::addDepartment(
 
     return true;
 }
-
+// Calculates the depth of a department
 int DepartmentTree::calculateDepth(
     DepartmentNode* node)
 {

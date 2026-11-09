@@ -1,5 +1,5 @@
+// Unit test for FacilityDataBase
 //Author: Bruno Palacios
-
 #include <iostream>
 #include <vector>
 #include <string>

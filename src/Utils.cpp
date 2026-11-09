@@ -5,6 +5,8 @@
 #include <cctype>
 #include <vector>
 using namespace std;
+// Returns a copy of the string with leading and trailing whitespace (space, tab, \r) removed
+
 string trim(const string& str){
     string whitespace = " \t\r";
     size_t start = str.find_first_not_of(whitespace);
@@ -17,6 +19,7 @@ string trim(const string& str){
 
     return str.substr(start, length);
 }
+//converts to uppercase
 string toUpper(const string& str){
     string result = str;
     for (size_t i = 0; i < result.length(); i++){

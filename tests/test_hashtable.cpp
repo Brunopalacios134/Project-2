@@ -1,3 +1,5 @@
+// Unit test for HashTable
+// Author: Bruno Palacios Busnelli
 #include <iostream>
 #include "HashTable.h"
 #include "Facility.h"
