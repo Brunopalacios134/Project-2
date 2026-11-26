@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <cctype>
+#include <iomanip>
 using namespace std;
 // Checks if the facility ID has a valid format
 bool FacilityDatabase::isValidId(const string& id) const{
@@ -175,4 +176,38 @@ void FacilityDatabase::searchByCategory(const string& input) const {
         cout << "No facilities found in category: " << trim(input) << endl;
     }
     cout << "Matches: " << count << endl;
+}
+// Displays a report of facilities grouped by category
+void FacilityDatabase::displayCategoryReport() const {
+    int total = facilities.size();
+    if (total == 0) {
+        cout << "No facilities are available." << endl;
+        cout << "Total: 0" << endl;
+        return;
+    }
+    vector<string> categoryNames;
+    vector<int> counts;
+    for (const Facility& f : facilities) {
+        string key = toUpper(f.getCategory());
+        bool found = false;
+        for (size_t i = 0; i < categoryNames.size(); i++) {
+            if (toUpper(categoryNames[i]) == key) {
+                counts[i]++;
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            categoryNames.push_back(f.getCategory());
+            counts.push_back(1);
+        }
+    }
+    cout << "Category | Count | Percentage" << endl;
+    for (size_t i = 0; i < categoryNames.size(); i++) {
+        double percent = counts[i] * 100.0 / total;
+        cout << categoryNames[i] << " | "
+             << counts[i] << " | "
+             << fixed << setprecision(1) << percent << "%" << endl;
+    }
+    cout << "Total | " << total << " | 100.0%" << endl;
 }
