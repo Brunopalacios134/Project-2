@@ -138,3 +138,41 @@ void FacilityDatabase::searchById(const string& input) const {
         cout << "Not found: no facility with ID " << id << endl;
     }
 }
+// Searches for facilities by name
+void FacilityDatabase::searchByName(const string& input) const {
+    string target = toUpper(trim(input));
+    if (target.empty()) {
+        cout << "Error: facility name cannot be blank." << endl;
+        return;
+    }
+    int count = 0;
+    for (const Facility& f : facilities) {
+        if (toUpper(f.getName()) == target) {
+            f.display();
+            count++;
+        }
+    }
+    if (count == 0) {
+        cout << "No facilities found with name: " << trim(input) << endl;
+    }
+    cout << "Matches: " << count << endl;
+}
+// Searches for facilities by category
+void FacilityDatabase::searchByCategory(const string& input) const {
+    string target = toUpper(trim(input));
+    if (target.empty()) {
+        cout << "Error: category cannot be blank." << endl;
+        return;
+    }
+    int count = 0;
+    for (const Facility& f : facilities) {
+        if (toUpper(f.getCategory()) == target) {
+            f.display();
+            count++;
+        }
+    }
+    if (count == 0) {
+        cout << "No facilities found in category: " << trim(input) << endl;
+    }
+    cout << "Matches: " << count << endl;
+}

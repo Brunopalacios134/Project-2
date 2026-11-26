@@ -24,6 +24,12 @@ class FacilityDatabase{
         void displayAll() const;
         // Searches for a facility using its ID
         void searchById(const std::string& input) const;
+        // Searches for facilities by name
+        void searchByName(const std::string& input) const;
+        // Searches for facilities by category
+        void searchByCategory(const std::string& input) const;
+        // Displays a report of facilities grouped by category
+        void displayCategoryReport() const;
 };
 
 
